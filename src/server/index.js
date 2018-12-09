@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('dist'));
 
+app.use('/', routes);
+
 app.get('/api/getUsername', (req, res) => res.send({
   username: os.userInfo().username
 }));

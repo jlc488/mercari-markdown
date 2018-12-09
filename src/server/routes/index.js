@@ -7,7 +7,7 @@ const routes = express.Router();
 
 routes.use(response.setHeadersForCORS);
 
-routes.use('/item', itemRoute);
+routes.use('/api/item', itemRoute);
 
 routes.get('/', (req, res) => {
   res.status(200).json({
