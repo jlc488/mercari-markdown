@@ -1,9 +1,22 @@
-import express from 'express';
+const express = require('express');
 
-import response from '../utils/response';
+const response = require('../utils/response');
+const itemRoute = require('./item/itemRoute');
 
 const routes = express.Router();
 
 routes.use(response.setHeadersForCORS);
 
-routes.use('/', '');
+routes.use('/item', itemRoute);
+
+routes.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'ok'
+  });
+});
+
+routes.use((req, res) => {
+  response.sendNotFound(res);
+});
+
+module.exports = routes;

@@ -10,4 +10,6 @@ COPY . /mercari-markdown
 
 RUN npm ci
 
-CMD ["npm", "run", "dev"]
+EXPOSE 8080
+
+CMD ["npm", "run", "server"]

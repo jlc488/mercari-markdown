@@ -1,6 +1,6 @@
 /* eslint-disable import/no-self-import */
-import sorting from './sorting';
-import pagination from './pagination';
+const sorting = require('./sorting');
+const pagination = require('./pagination');
 
 const getRequestOptions = (req) => {
   const paginationOptions = pagination.getPaginationOptions(req);
