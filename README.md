@@ -1,11 +1,11 @@
-# simple-react-full-stack
+# mercari-markdown
 
-[![Build Status](https://travis-ci.org/crsandeep/simple-react-full-stack.svg?branch=master)](https://travis-ci.org/crsandeep/simple-react-full-stack)
-[![Greenkeeper badge](https://badges.greenkeeper.io/crsandeep/simple-react-full-stack.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/jlc488/mercari-markdown.svg?branch=master)](https://travis-ci.org/jlc488/mercari-markdown)
+[![Greenkeeper badge](https://badges.greenkeeper.io/jlc488/mercari-markdown.svg)](https://greenkeeper.io/)
 
 This is a boilerplate to build a full stack web application using React, Node.js, Express and Webpack. It is also configured with webpack-dev-server, eslint, prettier and babel.
 
-- [simple-react-full-stack](#simple-react-full-stack)
+- [mercari-markdown](#mercari-markdown)
   - [Introduction](#introduction)
     - [Development mode](#development-mode)
     - [Production mode](#production-mode)
