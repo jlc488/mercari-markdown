@@ -1,0 +1,37 @@
+version: "3"
+services:
+  server:
+    container_name: mercari-server
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    ports:
+      - 8080:8080
+      - 3000:3000
+    environment:
+      - NODE_PATH=src/server
+      - DB_HOST=mongo
+      - DB=mercari
+    volumes:
+      - ./:/mercari-markdown
+    networks:
+      - mercari-backend
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: mongo
+    image: mvertes/alpine-mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/mercari-markdown/data/db
+    networks:
+      - mercari-backend
+
+networks:
+  mercari-backend:
+    driver: bridge
+
+volumes:
+  mongo:
