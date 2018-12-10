@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const express = require('express');
-const os = require('os');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const db = require('./db/db');
@@ -21,10 +20,6 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('dist'));
 
 app.use('/', routes);
-
-app.get('/api/getUsername', (req, res) => res.send({
-  username: os.userInfo().username
-}));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

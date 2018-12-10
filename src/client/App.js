@@ -10,6 +10,7 @@ export default class App extends Component {
     const user = await res.json();
 
     this.setState({ username: user.username });
+    console.log(user);
   }
 
   render() {

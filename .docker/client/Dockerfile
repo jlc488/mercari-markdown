@@ -1,6 +1,6 @@
 FROM mhart/alpine-node:10.4
 
-RUN npm install -g npm@latest
+RUN npm install -g webpack npm@latest
 
 RUN mkdir -p /mercari-markdown-client
 
