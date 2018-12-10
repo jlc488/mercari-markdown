@@ -1,36 +1,64 @@
 version: "3"
 services:
+##############################################
+# set up server container
+##############################################
   server:
     container_name: mercari-server
     build:
       context: .
-      dockerfile: ./.docker/Dockerfile
+      dockerfile: ./.docker/server/Dockerfile
+    expose:
+      - 8080
     ports:
       - 8080:8080
     environment:
       - NODE_PATH=src/server
-      - DB_HOST=mongo
+      - DB_HOST=mongodb
       - DB=mercari
     volumes:
-      - ./:/mercari-markdown
+      - ./src/server:/mercari-markdown-server/src/server
     networks:
-      - mercari-backend
+      - mercari-network
     depends_on:
       - mongodb
-
+    command: npm run server
+##############################################
+# set up client container
+##############################################
+  client:
+    container_name: mercari-client
+    build:
+      context: .
+      dockerfile: ./.docker/client/Dockerfile
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src/client:/mercari-markdown-client/src/client
+      - ./public:/mercari-markdown-client/public
+      - ./dist:/mercari-markdown-client/dist
+    networks:
+      - mercari-network
+    links:
+      - server
+    command: npm run client
+##############################################
+# set up database container
+##############################################
   mongodb:
     container_name: mongo
     image: mvertes/alpine-mongo
     ports:
       - 27017:27017
     volumes:
-      - mongo:/mercari-markdown/data/db
+      - ./data/db:/data/db
     networks:
-      - mercari-backend
+      - mercari-network
 
 networks:
-  mercari-backend:
-    driver: bridge
+  mercari-network:
 
 volumes:
   mongo:
