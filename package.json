@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
-    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "client": "webpack-dev-server",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -17,6 +17,7 @@
   "author": "Sin-Kang <jlc488@gmail.com>",
   "license": "copyleft",
   "dependencies": {
+    "axios": "0.18.0",
     "babel-polyfill": "6.26.0",
     "body-parser": "1.18.3",
     "config": "3.0.0",
@@ -24,8 +25,12 @@
     "helmet": "3.15.0",
     "mongoose": "5.3.15",
     "mongoose-paginate": "5.0.3",
+    "prop-types": "15.6.2",
     "react": "16.6.3",
-    "react-dom": "16.6.3"
+    "react-dom": "16.6.3",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "react-transition-group": "2.5.0"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

@@ -1,25 +1,53 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  List, Edit, Read, Write
+} from './view';
 import './app.css';
-import ReactImage from './react.png';
 
-export default class App extends Component {
-  state = { username: null };
+export default class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = '';
+  }
 
-  async componentDidMount() {
-    const res = await fetch('/api/getUsername');
-    const user = await res.json();
-
-    this.setState({ username: user.username });
-    console.log(user);
+  renderContent(location) {
+    console.log('fuck');
+    return (
+      <Switch location={location}>
+        <Route
+          path="/list"
+          render={match => (
+            <List match={match} />
+          )}
+        />
+        <Route
+          path="/write"
+          render={match => (
+            <Write match={match} />
+          )}
+        />
+        <Route
+          path="/edit/:id"
+          render={match => (
+            <Edit match={match} />
+          )}
+        />
+        <Route
+          path="/read/:id"
+          render={match => (
+            <Read match={match} />
+          )}
+        />
+      </Switch>
+    );
   }
 
   render() {
-    const { username } = this.state;
     return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
-      </div>
+      <BrowserRouter>
+        <Route render={({ location }) => this.renderContent(location)} />
+      </BrowserRouter>
     );
   }
 }

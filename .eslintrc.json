@@ -11,6 +11,9 @@
     "react/jsx-filename-extension": "off",
     "linebreak-style": "off",
     "consistent-return": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "object-curly-newline": "off"
   }
 }
