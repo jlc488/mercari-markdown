@@ -1,22 +1,22 @@
 import React, {
   PureComponent
-} from 'react';
+} from 'react'
 
-import ViewContainer from '../containers/ViewContainer';
+import ViewContainer from '../containers/ViewContainer'
 
 export default class Edit extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
-    const content = <div>this is edit page</div>;
+    const content = <div>this is edit page</div>
 
     return ( <
       ViewContainer content = {
         content
       }
       />
-    );
+    )
   }
 }

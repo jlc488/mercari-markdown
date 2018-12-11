@@ -13,17 +13,44 @@
   "plugins": [
     "import",
     "react",
-    "jsx-a11y"
+    "jsx-a11y",
+    "flowtype",
+    "prettier"
   ],
   "rules": {
+    "prettier/prettier": "error",
     "no-console": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": "off",
-    "linebreak-style": "off",
+    "react/jsx-filename-extension": [
+      1, {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/prefer-stateless-function": "off",
+    "react/forbid-prop-types": [0, {
+      "forbid": []
+    }],
+    "import/extensions": [1, "never", {
+      "svg": "always"
+    }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ],
+    "semi": ["error", "never"],
     "consistent-return": "off",
     "no-shadow": "off",
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "object-curly-newline": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "16.6.3"
+    }
   }
 }

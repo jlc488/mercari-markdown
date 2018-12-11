@@ -1,18 +1,18 @@
 import React, {
   Component
-} from 'react';
+} from 'react'
 
-import ViewContainer from '../containers/ViewContainer';
+import ViewContainer from '../containers/ViewContainer'
 
 export default class List extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
 
-    const content = <div> thisis list page </div>;
+    const content = <div> thisis list page </div>
 
-      return (<ViewContainer content = {content}/>);
+      return (<ViewContainer content = {content}/>)
     }
   }

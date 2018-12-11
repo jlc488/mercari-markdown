@@ -1,19 +1,19 @@
-import React, { PureComponent } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import React, { PureComponent } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import {
   List, Edit, Read, Write
-} from './view';
-import './app.css';
+} from './view'
+import './app.css'
 
 export default class App extends PureComponent {
   constructor(props) {
-    super(props);
-    this.state = '';
+    super(props)
+    this.state = ''
   }
 
   renderContent(location) {
-    console.log('fuck');
+    console.log('fuck')
     return (
       <TransitionGroup>
         <CSSTransition
@@ -47,7 +47,7 @@ export default class App extends PureComponent {
           </Switch>
         </CSSTransition>
       </TransitionGroup>
-    );
+    )
   }
 
   render() {
@@ -55,6 +55,6 @@ export default class App extends PureComponent {
       <BrowserRouter>
         <Route render={({ location }) => this.renderContent(location)} />
       </BrowserRouter>
-    );
+    )
   }
 }
