@@ -38,7 +38,7 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
     watchContentBase: true,
-    publicPath: './',
+    publicPath: '/',
     proxy: {
       '/api': {
         target: 'http://server:8080'
