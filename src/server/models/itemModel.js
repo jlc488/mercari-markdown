@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate');
+const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 
 const {
   Schema
-} = mongoose;
+} = mongoose
 
 const ItemSchema = new Schema({
   title: {
@@ -26,13 +26,13 @@ const ItemSchema = new Schema({
     default: '{}',
     get(data) {
       try {
-        return JSON.parse(data);
+        return JSON.parse(data)
       } catch {
-        return data;
+        return data
       }
     },
     set(data) {
-      return JSON.stringify(data);
+      return JSON.stringify(data)
     },
   },
   createdAt: {
@@ -47,8 +47,8 @@ const ItemSchema = new Schema({
   toObject: {
     getters: true
   },
-});
+})
 
-ItemSchema.plugin(mongoosePaginate);
+ItemSchema.plugin(mongoosePaginate)
 
-module.exports = mongoose.model('Item', ItemSchema);
+module.exports = mongoose.model('Item', ItemSchema)

@@ -1,28 +1,28 @@
 /* eslint-disable import/no-self-import */
-const sorting = require('./sorting');
-const pagination = require('./pagination');
+const sorting = require('./sorting')
+const pagination = require('./pagination')
 
 const getRequestOptions = (req) => {
-  const paginationOptions = pagination.getPaginationOptions(req);
-  const sortOptions = sorting.getSortingOptions(req);
+  const paginationOptions = pagination.getPaginationOptions(req)
+  const sortOptions = sorting.getSortingOptions(req)
 
-  return Object.assign({}, paginationOptions, sortOptions);
-};
+  return Object.assign({}, paginationOptions, sortOptions)
+}
 
 const getFilteringOptions = (req, parameters) => {
-  const options = {};
+  const options = {}
 
   parameters.forEach((param) => {
     if (req.query[param] !== undefined) {
-      options[param] = req.query[param];
+      options[param] = req.query[param]
     }
-  });
+  })
 
-  return options;
-};
+  return options
+}
 
 
 module.exports = {
   getRequestOptions,
   getFilteringOptions
-};
+}
