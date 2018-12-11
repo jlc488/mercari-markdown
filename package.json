@@ -10,7 +10,6 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "lint": "eslint .",
-    "prepush": "npm run lint && npm test",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -84,5 +83,10 @@
     "testPathIgnorePatterns": [
       "/node_modules/"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm test"
+    }
   }
 }
