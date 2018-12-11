@@ -7,11 +7,10 @@ import ViewContainer from '../containers/ViewContainer';
 export default class Read extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = Object.assign(this.state, {});
   }
 
   render() {
-    const content = '<div>this is read page {this.props.match}</div>';
+    const content = <div>this is read page</div>;
 
     return (
       <ViewContainer content={content} />

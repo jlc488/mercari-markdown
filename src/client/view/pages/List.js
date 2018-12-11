@@ -5,10 +5,14 @@ import React, {
 import ViewContainer from '../containers/ViewContainer';
 
 export default class List extends Component {
-  render() {
-    const content = '<div>thisis list page?? {this.props.match}</div>';
-
-    return (<ViewContainer content={content} />
-    );
+  constructor(props) {
+    super(props);
   }
-}
+
+  render() {
+
+    const content = <div> thisis list page </div>;
+
+      return (<ViewContainer content = {content}/>);
+    }
+  }
