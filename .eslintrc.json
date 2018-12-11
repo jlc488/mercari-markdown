@@ -14,11 +14,9 @@
     "import",
     "react",
     "jsx-a11y",
-    "flowtype",
-    "prettier"
+    "flowtype"
   ],
   "rules": {
-    "prettier/prettier": "error",
     "no-console": "off",
     "comma-dangle": "off",
     "react/jsx-filename-extension": [
