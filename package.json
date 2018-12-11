@@ -9,9 +9,9 @@
     "client": "webpack-dev-server",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "lint": "eslint .",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "eslint:lint": "eslint .",
+    "jest:test": "jest --coverage",
+    "jest:test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -86,7 +86,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint && npm run test"
+      "pre-push": "npm run eslint:lint && npm run jest:test"
     }
   }
 }
