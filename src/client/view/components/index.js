@@ -1,1 +1,5 @@
-import './NavComponent'
+import NavComponent from './NavComponent'
+
+export {
+    NavComponent
+}
