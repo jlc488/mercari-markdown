@@ -21,17 +21,18 @@ before((done) => {
     })
 })
 
-beforeEach(async () => {
-    const collections = await mongoose.connection.db.collections()
+// beforeEach(async () => {
+//     const collections = await mongoose.connection.db.collections()
 
-    for(let col of collections) {
-        await col.deleteOne()
-    }
-})
+//     for(let col of collections) {
+//         await col.deleteOne()
+//     }
+// })
 
 describe('Mongoose Test', () => {
     it('Adding WikiItem',async () => {
         const item = {
+            _id: '5c115460b736b251e8af82e6',
             title: 'test title',
             creator: 'sinny-creator',
             content: 'test content',
@@ -40,4 +41,12 @@ describe('Mongoose Test', () => {
         const newItem = new WikiItem(item)
         await expect( newItem.save(), item)
     })//Add WikiItem
+
+    it('Read WikiItem', async () => {
+        const ret = await WikiItem.findOne({_id:'5c115460b736b251e8af82e6'})
+
+        console.log(ret)
+
+        await expect(ret.title).eq('test title')
+    })
 })
