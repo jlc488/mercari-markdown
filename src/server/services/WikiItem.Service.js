@@ -8,7 +8,11 @@ async function list(qry, offset, limit) {
     }
 
     try{
-        const ret = await WikiItem.paginate(qry, options)
+        // const ret = await WikiItem.paginate(qry, options)
+        const ret = await WikiItem.find()
+        .sort({_id: 1})
+        .select({title: 1, content: 1})
+        .paginate(qry, options)
 
         return ret
     }catch(err){

@@ -13,32 +13,14 @@ const ItemSchema = new mongoose.Schema({
   updater: {
     type: String,
   },
-  extended: {
+  content: {
     type: String,
-    default: '{}',
-    get(data) {
-      try {
-        return JSON.parse(data)
-      } catch {
-        return data
-      }
-    },
-    set(data) {
-      return JSON.stringify(data)
-    },
   },
   createdAt: {
     type: Date,
     default: Date.now
   },
   updatedAt: Date,
-}, {
-  toJSON: {
-    getters: true
-  },
-  toObject: {
-    getters: true
-  },
 })
 
 ItemSchema.plugin(mongoosePaginate)
