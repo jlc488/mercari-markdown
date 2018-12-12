@@ -27,7 +27,10 @@ class WikiPresenter {
             }
         ]
 
-    @observable wikiItem = {}
+    @observable wikiItem = {
+        _id: '1',
+        content:'test1'
+    }
 
     @computed
     get listCount() {
