@@ -1,11 +1,7 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate')
 
-const {
-  Schema
-} = mongoose
-
-const ItemSchema = new Schema({
+const ItemSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -16,10 +12,6 @@ const ItemSchema = new Schema({
   },
   updater: {
     type: String,
-  },
-  viewCount: {
-    type: Number,
-    default: 0
   },
   extended: {
     type: String,
@@ -51,4 +43,4 @@ const ItemSchema = new Schema({
 
 ItemSchema.plugin(mongoosePaginate)
 
-module.exports = mongoose.model('Item', ItemSchema)
+module.exports = mongoose.model('WikiItem', ItemSchema)
