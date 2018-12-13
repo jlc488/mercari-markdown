@@ -11,6 +11,7 @@ This is a the simple & THE VERY SIMPLE wiki that built in with a full stack web 
 
 ## Quick Start
 
+If you are running project locally, make sure you have MongoDB installed and change the connection information in the db.js file
 ```bash
 # Clone the repository
 git clone https://github.com/jlc488/mercari-markdown
@@ -30,3 +31,11 @@ yarn build (or npm run build)
 # Start production server
 yarn start (or npm start)
 ```
+
+## Start the project with Docker-Compose
+
+```bash
+# run the docker-compose command
+docker-compose up --build
+```
+

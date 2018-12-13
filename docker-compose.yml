@@ -39,6 +39,9 @@ services:
       - ./src/client:/mercari-markdown-client/src/client
       - ./public:/mercari-markdown-client/public
       - ./dist:/mercari-markdown-client/dist
+      - ./node_modules:/mercari-markdown-client/node_modules
+      - ./package.json:/mercari-markdown-client/package.json
+      - ./package-lock.json:/mercari-markdown-client/package-lock.json
     networks:
       - mercari-network
     links:
