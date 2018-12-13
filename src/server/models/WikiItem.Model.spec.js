@@ -21,22 +21,20 @@ before((done) => {
     })
 })
 
-// beforeEach(async () => {
-//     const collections = await mongoose.connection.db.collections()
-
-//     for(let col of collections) {
-//         await col.deleteOne()
-//     }
-// })
+after(async () => {
+    mongoose.connection.db.dropDatabase(function(){
+        mongoose.connection.close(done);
+      });
+})
 
 describe('Mongoose Test', () => {
     it('Adding WikiItem',async () => {
         const item = {
             _id: '5c115460b736b251e8af82e6',
-            title: 'test title',
-            creator: 'sinny-creator',
-            content: 'test content',
-            updater: 'sinny-updater'
+            title: 'test title1',
+            creator: 'sinny-creator1',
+            content: 'test content1',
+            updater: 'sinny-updater1'
         }
         const newItem = new WikiItem(item)
         await expect( newItem.save(), item)
@@ -44,9 +42,27 @@ describe('Mongoose Test', () => {
 
     it('Read WikiItem', async () => {
         const ret = await WikiItem.findOne({_id:'5c115460b736b251e8af82e6'})
+        await expect(ret.title).eq('test title1')
+    })
 
-        console.log(ret)
+    it('List WikiItem', async () => {
+        const ret = await WikiItem.find()
 
-        await expect(ret.title).eq('test title')
+        await expect(ret).to.be.an('array')
+    })
+
+    it('Update WikiItem', async () => {
+        const id = '5c115460b736b251e8af82e6'
+
+        const item = {
+            title: 'test updated',
+            creator: 'sinny-creator1',
+            content: 'test content1',
+            updater: 'sinny-updater1'
+        }
+
+        const ret = await WikiItem.findOneAndUpdate({_id: id}, item, {new: true})
+
+        await expect(ret.title).eq(item.title)
     })
 })
