@@ -1,6 +1,6 @@
 const express = require('express')
 
-const itemController = require('../../controllers/itemController')
+const itemController = require('../../controllers/WikiItem.Controller')
 
 const routes = express.Router({
   mergeParams: true
