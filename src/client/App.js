@@ -5,8 +5,6 @@ import { List, Edit, Read, Write } from "./view"
 import { Provider } from 'mobx-react'
 import WikiPresenter from './presenters/WikiPresenter'
 
-import "./app.css"
-
 export default class App extends PureComponent {
   constructor(props) {
     super(props)
