@@ -1,6 +1,6 @@
 import React from 'react'
 import { Nav, NavItem, NavLink } from 'reactstrap'
-import {withRouter} from 'react-router-dom'
+
 class NavComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -26,4 +26,4 @@ class NavComponent extends React.Component {
   }
 }
 
-export default withRouter(NavComponent)
+export default NavComponent
