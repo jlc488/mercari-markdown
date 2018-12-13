@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react"
-
 import ViewContainer from "../containers/ViewContainer"
+import BaseComponent from '../components/BaseComponent'
 
-export default class Read extends PureComponent {
+class Read extends BaseComponent {
   constructor(props) {
     super(props)
   }
@@ -13,3 +13,5 @@ export default class Read extends PureComponent {
     return <ViewContainer content={content} />
   }
 }
+
+export default Read

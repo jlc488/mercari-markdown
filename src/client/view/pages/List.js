@@ -7,27 +7,20 @@ import {
   ListGroupItem
 } from 'reactstrap'
 import PropTypes from 'prop-types'
+import {NavLink} from 'react-router-dom'
+import BaseComponent from '../components/BaseComponent'
 import ViewContainer from '../containers/ViewContainer'
 
 @inject('WikiPresenter')
 @observer
-export default class List extends Component {
+class List extends BaseComponent {
   constructor(props) {
     super(props)
     console.log('List Constructor')
-
-    this.goRead = this.goRead.bind(this)
   }
 
   componentWillReact() {
-    console.log("I will re-render, since the todo has changed!")
-  }
-
-
-  goRead( evt, _id ) {
-    evt.preventDefault()
-    console.log(evt)
-    console.log('goRead clicked' + _id)
+    console.log("I will re-render")
   }
 
   render() {
@@ -35,7 +28,15 @@ export default class List extends Component {
 
     let wikis = WikiPresenter?.wikiItemList.map(wiki => (
       // eslint-disable-next-line react/jsx-key
-      <ListGroupItem key={wiki._id} onClick={e => this.goRead(e, wiki._id)}> {wiki.content} </ListGroupItem>
+      <ListGroupItem key={wiki._id}>
+        <NavLink
+          to={`/read/${wiki._id}`}
+          key={wiki._id}
+          title={wiki.title}
+        >
+          {wiki.title}
+        </NavLink>
+       </ListGroupItem>
      ))
 
     const content = ( <ListGroup>{wikis}</ListGroup> )
@@ -43,6 +44,8 @@ export default class List extends Component {
     return <ViewContainer content = {content}/>
   }
 }
+
+export default List
 
 List.propTypes = {
   wikiItemList: PropTypes.object

@@ -2,8 +2,8 @@ const response = require('../utils/response')
 const wikiService = require('../services/WikiItem.Service')
 
 async function list(req, res) {
-  const offset = req.query.offset ?? 20
-  const limit = req.query.limit ?? 10
+  const offset = req.query.offset || 20
+  const limit = req.query.limit || 10
 
   try{
     const ret = await wikiService.list({}, offset, limit)

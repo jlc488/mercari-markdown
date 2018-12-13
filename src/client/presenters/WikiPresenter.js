@@ -7,23 +7,28 @@ class WikiPresenter {
     @observable wikiItemList = [
             {
                 _id: '1',
-                content:'test1'
+                content:'test1',
+                title:'test1 title'
             },
             {
                 _id: '2',
-                content:'test2'
+                content:'test2',
+                title:'test2 title'
             },
             {
                 _id: '3',
-                content:'test3'
+                content:'test3',
+                title:'test3 title'
             },
             {
                 _id: '4',
-                content:'test4'
+                content:'test4',
+                title:'test4 title'
             },
             {
                 _id: '5',
-                content:'test5'
+                content:'test5',
+                title:'test5 title'
             }
         ]
 
