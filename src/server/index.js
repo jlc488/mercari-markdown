@@ -2,8 +2,6 @@
 const express = require('express')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
-const db = require('./db/db')
-const itemModel = require('./models/itemModel')
 const routes = require('./routes')
 
 const port = process.env.PORT || 8080

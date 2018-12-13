@@ -1,7 +1,7 @@
 const express = require('express')
 const os = require('os')
 const response = require('../utils/response')
-const wikiItemRoute = require('./item/WikiItemRoute')
+const wikiItemRoute = require('./item/WikiItem.Route')
 
 const routes = express.Router()
 
