@@ -1,7 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
-import { List, Write, Read, Edit } from "./view"
+// import { List, Write, Read, Edit } from "./view"
+import { Write, Read, Edit } from "./view"
 // import { Provider } from 'mobx-react'
 // import WikiPresenter from './presenters/WikiPresenter'
 
