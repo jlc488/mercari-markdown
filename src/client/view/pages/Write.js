@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import ViewContainer from '../containers/ViewContainer'
 import BaseComponent from '../components/BaseComponent'
 
-import ReactMde, { ReactMdeTypes, DraftUtil } from "react-mde";
+import ReactMde, { DraftUtil } from "react-mde"
 import Showdown from 'showdown'
 
 class Write extends BaseComponent {
@@ -29,18 +29,18 @@ class Write extends BaseComponent {
   }
 
   generateMarkdownPreview = (markdown) => {
-    return this.converter.makeHtml(markdown);
+    return this.converter.makeHtml(markdown)
   }
 
   onButtonClick = async () => {
-    const { mdeState } = this.state;
+    const { mdeState } = this.state
     const newMdeState = await DraftUtil.buildNewMdeState(
       mdeState,
       this.generateMarkdownPreview,
       mdeState.markdown + " " + mdeState.markdown
-    );
-    this.setState({ mdeState: newMdeState });
-  };
+    )
+    this.setState({ mdeState: newMdeState })
+  }
 
   render() {
     const content = (
