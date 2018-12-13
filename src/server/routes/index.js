@@ -1,26 +1,26 @@
-const express = require('express');
-const os = require('os');
-const response = require('../utils/response');
-const itemRoute = require('./item/itemRoute');
+const express = require('express')
+const os = require('os')
+const response = require('../utils/response')
+const wikiItemRoute = require('./item/WikiItemRoute')
 
-const routes = express.Router();
+const routes = express.Router()
 
-routes.use(response.setHeadersForCORS);
+routes.use(response.setHeadersForCORS)
 
-routes.use('/api/item', itemRoute);
+routes.use('/api/wiki', wikiItemRoute)
 
 routes.get('/api/getUsername', (req, res) => res.send({
   username: os.userInfo().username
-}));
+}))
 
 routes.get('/', (req, res) => {
   res.status(200).json({
     message: 'ok'
-  });
-});
+  })
+})
 
 routes.use((req, res) => {
-  response.sendNotFound(res);
-});
+  response.sendNotFound(res)
+})
 
-module.exports = routes;
+module.exports = routes

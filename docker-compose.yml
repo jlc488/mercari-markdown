@@ -15,7 +15,7 @@ services:
     environment:
       - NODE_PATH=src/server
       - DB_HOST=mongodb
-      - DB=mercari
+      - DB=sinny_mongo_db
     volumes:
       - ./src/server:/mercari-markdown-server/src/server
     networks:
