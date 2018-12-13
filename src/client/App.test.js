@@ -12,11 +12,11 @@ test("renders App without crashing", () => {
   ReactDOM.unmountComponentAtNode(div)
 })
 
-test("renders List page without crashing", () => {
-  const div = document.createElement("div")
-  ReactDOM.render(<Provider WikiPresenter={WikiPresenter}><List/></Provider>, div)
-  ReactDOM.unmountComponentAtNode(div)
-})
+// test("renders List page without crashing", () => {
+//   const div = document.createElement("div")
+//   ReactDOM.render(<Provider WikiPresenter={WikiPresenter}><List/></Provider>, div)
+//   ReactDOM.unmountComponentAtNode(div)
+// })
 
 test("renders Write page without crashing", () => {
   const div = document.createElement("div")
