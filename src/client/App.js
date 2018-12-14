@@ -1,11 +1,10 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
+import BaseComponent from './view/components/BaseComponent'
 import { List, Edit, Read, Write } from "./view"
-import { Provider } from 'mobx-react'
-import WikiPresenter from './presenters/WikiPresenter'
 
-export default class App extends PureComponent {
+export default class App extends BaseComponent {
   constructor(props) {
     super(props)
     this.state = ""
@@ -18,17 +17,17 @@ export default class App extends PureComponent {
           <Switch location={location}>
             <Route
               path="/list"
-              render={match => <Provider WikiPresenter={WikiPresenter}><List match={match} {...this.props} /></Provider>}
+              render={match => <List match={match} {...this.props} />}
             />
-            <Route path="/write" render={() => <Provider WikiPresenter={WikiPresenter}><Write {...this.props} /></Provider>}
+            <Route path="/write" render={() => <Write {...this.props} />}
             />
             <Route
               path="/edit/:id"
-              render={match => <Provider WikiPresenter={WikiPresenter}><Edit match={match} {...this.props} /></Provider>}
+              render={match => <Edit match={match} {...this.props} />}
             />
             <Route
               path="/read/:id"
-              render={match => <Provider WikiPresenter={WikiPresenter}><Read match={match} {...this.props} /></Provider>}
+              render={match => <Read match={match} {...this.props} />}
             />
           </Switch>
         </CSSTransition>
@@ -39,7 +38,7 @@ export default class App extends PureComponent {
   render() {
     return (
       <BrowserRouter>
-        <Route render={({ location }) => this.renderContent(location)} />
+        <Route render={({ location }) => this.renderRedirect(location) || this.renderContent(location)} />
       </BrowserRouter>
     )
   }

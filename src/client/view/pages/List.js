@@ -2,42 +2,65 @@ import React from "react"
 import { inject, observer } from 'mobx-react'
 import {
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  Label
 } from 'reactstrap'
 import PropTypes from 'prop-types'
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter } from 'react-router-dom'
 import BaseComponent from '../components/BaseComponent'
 import ViewContainer from '../containers/ViewContainer'
+import _ from 'lodash'
+
 
 @inject('WikiPresenter')
+@withRouter
 @observer
 class List extends BaseComponent {
+  
   constructor(props) {
     super(props)
-    console.log('List Constructor')
+    this.wItemList = []
+    this.props.WikiPresenter.loadWikiItemList()
+  }
+  
+  // componentWillReact() {
+  //   console.log("List page will re-render")
+  // }
+  
+  componentDidAmount() {
+    this.wItemList = this.props.WikiPresenter.wikiItemList
   }
 
-  componentWillReact() {
-    console.log("I will re-render")
+  emptyList() {
+    return (
+    <ListGroup>
+      <ListGroupItem>
+        <Label>Empty List</Label>
+      </ListGroupItem>
+    </ListGroup>
+    )
   }
 
-  render() {
-    const { WikiPresenter } = this.props
-
-    let wikis = WikiPresenter?.wikiItemList.map(wiki => (
+  generateList() {
+    let wikis = _.map(this.wItemList, wiki => (
       // eslint-disable-next-line react/jsx-key
-      <ListGroupItem key={wiki._id}>
+      <ListGroupItem key={wiki?._id}>
         <NavLink
-          to={`/read/${wiki._id}`}
-          key={wiki._id}
-          title={wiki.title}
+          to={`/read/${wiki?._id}`}
+          key={wiki?._id}
+          title={wiki?.title}
         >
-          {wiki.title}
+          {wiki?.title}
         </NavLink>
        </ListGroupItem>
      ))
+     return <ListGroup>{wikis}</ListGroup>
+  }
 
-    const content = ( <ListGroup>{wikis}</ListGroup> )
+  render() {
+    this.wItemList = this.props.WikiPresenter.wikiItemList
+
+    const content = this.wItemList.length ? this.generateList() : this.emptyList()
 
     return <ViewContainer content = {content}/>
   }

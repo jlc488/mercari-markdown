@@ -1,41 +1,13 @@
 import axios from 'axios'
 import { observable, action, computed, runInAction  } from 'mobx'
+import _ from 'lodash'
 
 class WikiPresenter {
     constructor(){}
 
-    @observable wikiItemList = [
-            {
-                _id: '1',
-                content:'test1',
-                title:'test1 title'
-            },
-            {
-                _id: '2',
-                content:'test2',
-                title:'test2 title'
-            },
-            {
-                _id: '3',
-                content:'test3',
-                title:'test3 title'
-            },
-            {
-                _id: '4',
-                content:'test4',
-                title:'test4 title'
-            },
-            {
-                _id: '5',
-                content:'test5',
-                title:'test5 title'
-            }
-        ]
+    @observable wikiItemList = []
 
-    @observable wikiItem = {
-        _id: '1',
-        content:'test1'
-    }
+    @observable wikiItem = {}
 
     @computed
     get listCount() {
@@ -44,6 +16,8 @@ class WikiPresenter {
 
     @action
     async saveWikiItem(wikiItem) {
+        console.log('saveWikiItem')
+
         this.wikiItem = {
             creator: 'sin',
             updater: 'sin',
@@ -53,36 +27,65 @@ class WikiPresenter {
         this.wikiItemList.push(this.wikiItem)
 
         const ret = await axios.post('/api/wiki', wikiItem)
-
+        console.log('presenter')
+        console.log(ret)
         return ret
     }
 
     @action
-    async getWikiItemList() {
+    async updateWikiItem(wikiItem) {
+        console.log('updateWikiItem')
+
+        this.wikiItem = {
+            creator: 'sin',
+            updater: 'sin',
+            ...wikiItem
+        }
+
+        _.find(this.wikiItemList, e => {
+            if( e._id === wikiItem._id){
+                e.title = wikiItem.title
+                e.contents = wikiItem.contents
+                return e
+            }
+        })
+
+        const ret = await axios.put(`/api/wiki/${wikiItem._id}`, wikiItem)
+        console.log('presenter')
+        console.log(ret)
+        return ret
+    }
+
+    @action
+    async loadWikiItemList() {
         try{
 
             const ret = await axios.get('/api/wiki')
             if (ret) {
                 runInAction(() =>{
-                    this.wikiItemList = ret.wikiItemList
+                    this.wikiItemList = ret.data
                 })
             }
+            return this.wikiItemList
         }catch(e){
             console.log(e)
         }
     }
 
     @action
-    async getWikiItem(id) {
+    async loadWikiItem(id) {
         try{
 
-            const ret = await axios.get(`/api/${id}`)
-
+            const ret = await axios.get(`/api/wiki/${id}`)
+            console.log(ret)
             if (ret) {
                 runInAction(() =>{
-                    this.wikiItem = ret.wikiItem
+                    this.wikiItem = ret.data
+                    console.log('loadWikiItem')
+                    console.log(this.wikiItem)
                 })
             }
+            return this.wikiItem
         }catch(e){
             console.log(e)
         }

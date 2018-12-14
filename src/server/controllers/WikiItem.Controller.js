@@ -8,7 +8,7 @@ async function list(req, res) {
   try{
     const ret = await wikiService.list({}, offset, limit)
 
-    return res.json(ret.docs)
+    return res.status(200).json(ret)
   }catch(err){
     return response.sendNotFound(res)
   }
@@ -17,7 +17,7 @@ async function list(req, res) {
 async function create(req, res) {
   try{
     const ret = await wikiService.create(req.body)
-
+    
     return response.sendCreated(res, ret)
 
   }catch(err){

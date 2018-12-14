@@ -1,11 +1,12 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
+import { Provider } from 'mobx-react'
+import WikiPresenter from './presenters/WikiPresenter'
 
+import 'highlight.js/styles/github.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'react-mde/lib/styles/css/react-mde-all.css'
-import 'draft-js/dist/Draft.css'
 import "./app.css"
 
 
-ReactDOM.render(<App className="container" />, document.getElementById("root"))
+ReactDOM.render(<Provider WikiPresenter={WikiPresenter}><App/></Provider>, document.getElementById("root"))

@@ -6,7 +6,7 @@ const expect = chai.expect
 
 const WikiItem = require('../models/WikiItem.Model')
 
-mongoose.Promise = global.Promise
+mongoose.Promise = require('bluebird')
 
 before((done) => {
     mongoose.connect(`mongodb://jlc488:97Queen$**@ds025792.mlab.com:25792/sinny_mongo_db`, {
@@ -21,10 +21,11 @@ before((done) => {
     })
 })
 
-after(async () => {
-    mongoose.connection.db.dropDatabase(function(){
-        mongoose.connection.close(done);
-      });
+after(async (done) => {
+    mongoose.connection.db.dropDatabase(function(done){
+        mongoose.connection.close(done)
+      })
+      done()
 })
 
 describe('Mongoose Test', () => {

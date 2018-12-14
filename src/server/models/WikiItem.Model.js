@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate')
 
+mongoose.Promise = require('bluebird')
+
 const ItemSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -13,14 +15,17 @@ const ItemSchema = new mongoose.Schema({
   updater: {
     type: String,
   },
-  content: {
+  contents: {
     type: String,
   },
   createdAt: {
     type: Date,
     default: Date.now
   },
-  updatedAt: Date,
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
 })
 
 ItemSchema.plugin(mongoosePaginate)

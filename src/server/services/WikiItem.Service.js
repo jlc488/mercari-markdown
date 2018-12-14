@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const WikiItem = require('../models/WikiItem.Model')
 
 async function list(qry, offset, limit) {
@@ -9,14 +10,14 @@ async function list(qry, offset, limit) {
 
     try{
         // const ret = await WikiItem.paginate(qry, options)
-        const ret = await WikiItem.find()
+        const ret = await WikiItem.find(qry)
         .sort({_id: 1})
         .select({title: 1, content: 1})
-        .paginate(qry, options)
-
+        // .paginate(qry, options)
+console.log(ret)
         return ret
     }catch(err){
-        throw Error(err)
+        console.log(err)
     }
 }
 
@@ -28,7 +29,7 @@ async function create(wiki) {
 
     try{
         const ret = await newWikiItem.save()
-
+        
         return ret
     }catch(err){
         throw Error(err)

@@ -1,58 +1,79 @@
 import React from "react"
+import { inject, observer } from 'mobx-react'
 import ViewContainer from '../containers/ViewContainer'
 import BaseComponent from '../components/BaseComponent'
+import {withRouter } from 'react-router-dom'
+import {Form, FormGroup, Label, Input, Button} from 'reactstrap'
 
-import ReactMde, { DraftUtil } from "react-mde"
-import Showdown from 'showdown'
-
+@inject('WikiPresenter')
+@withRouter
+@observer
 class Write extends BaseComponent {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      mdeState: null
+      title: '',
+      contents: '',
+      redirectTo: ''
     }
 
-    this.converter = new Showdown.Converter({
-      tables: true,
-      simplifiedAutoLink: true
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange = (evt) => {
+    evt.preventDefault()
+
+    this.setState({
+      [evt.target.name]: evt.target.value
     })
-
-    this.handleValueChange = this.handleValueChange.bind(this)
-    this.generateMarkdownPreview = this.generateMarkdownPreview.bind(this)
-    this.onButtonClick = this.onButtonClick.bind(this)
   }
 
-  handleValueChange(mdeState){
-    this.setState({mdeState})
-  }
+  onSubmit = (event) => {
+    event.preventDefault()
+    try{
+      console.log('onButtonClick')
+      const {title, contents} = this.state
+      this.props.WikiPresenter.wikiItemList.push({
+        title,
+        contents
+      })
 
-  generateMarkdownPreview = (markdown) => {
-    return this.converter.makeHtml(markdown)
-  }
+      console.log(this.state.title)
+      console.log(this.state.contents)
+      
+      const wPresenter = this.props.WikiPresenter
+      
+      wPresenter.saveWikiItem({
+        title: this.state.title,
+        contents: this.state.contents
+      })
 
-  onButtonClick = async () => {
-    const { mdeState } = this.state
-    const newMdeState = await DraftUtil.buildNewMdeState(
-      mdeState,
-      this.generateMarkdownPreview,
-      mdeState.markdown + " " + mdeState.markdown
-    )
-    this.setState({ mdeState: newMdeState })
+      this.redirectTo('/list')
+
+    }catch(err){
+      console.log(err)
+    }
   }
 
   render() {
     const content = (
       <div>
-        <ReactMde
-          onChange={this.handleValueChange}
-          editorState={this.state.mdeState}
-          generateMarkdownPreview={this.generateMarkdownPreview}
-        />
-        <button style={{ marginTop: 20 }} onClick={this.onButtonClick}>
-          Save
-        </button>
+        <Form onSubmit={this.onSubmit}>
+          <FormGroup>
+            <Label for="mdText">Enter texts using MarkDown</Label>
+            {' '}
+            <Input type="text" name="title" id="titleId" placeholder="title (No markdown)" value={this.state.title} onChange={this.onChange} />
+          </FormGroup>
+          {' '}
+          <FormGroup>
+            <Input type="textarea" name="contents" id="contentsId" placeholder="Markdown allowed" value={this.state.contents} onChange={this.onChange} />
+          </FormGroup>
+          {' '}
+          <Button style={{ marginTop: 20 }} >Save</Button>
+        </Form>
       </div>
 
     )

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+mongoose.Promise = require('bluebird')
 
 mongoose.connect(`mongodb://${process.env.DB_HOST || 'localhost'}:27017/${process.env.DB}`, {
   useNewUrlParser: true
@@ -20,7 +21,7 @@ mongoose.connect(`mongodb://${process.env.DB_HOST || 'localhost'}:27017/${proces
 // })
 
 
-mongoose.connection.dropDatabase()
+// mongoose.connection.dropDatabase()
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error'))

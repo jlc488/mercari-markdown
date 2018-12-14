@@ -5,9 +5,9 @@ test('wikiItemList is not empty', () =>{
 
     wikiItemList.push({
         _id: 'test_id',
-        content: 'test'
+        contents: 'test'
     })
-    expect(wikiItemList.length).toBe(6)
+    expect(wikiItemList.length).toBe(1)
 })
 
 // test('wikiItem is not empty', () =>{

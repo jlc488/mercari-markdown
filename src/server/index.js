@@ -3,7 +3,7 @@ const express = require('express')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const routes = require('./routes')
-
+const db = require('./db/db')
 const port = process.env.PORT || 8080
 const app = express()
 
@@ -22,10 +22,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-app.use(express.static('dist'))
-
 app.use('/', routes)
-
+console.log('server index')
 app.listen(port, () => console.log(`Listening on port ${port}`))
 
 module.exports = app
