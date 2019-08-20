@@ -78,7 +78,7 @@
     "concurrently": "^4.0.0",
     "css-loader": "^2.0.0",
     "enzyme": "3.8.0",
-    "eslint": "^5.0.0",
+    "eslint": "^6.2.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-flowtype": "3.2.1",
     "eslint-plugin-import": "^2.11.0",
