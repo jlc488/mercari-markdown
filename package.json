@@ -90,7 +90,7 @@
     "jest": "23.6.0",
     "jest-cli": "23.6.0",
     "mocha": "5.2.0",
-    "nodemon": "^1.17.3",
+    "nodemon": "^2.0.4",
     "react-test-renderer": "16.7.0",
     "style-loader": "^0.23.0",
     "url-loader": "^1.0.1",
